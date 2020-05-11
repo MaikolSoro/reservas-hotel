@@ -6,10 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
 
 	<title>Hotel Tambor</title>
-
+	
+	<base href="vistas/">
+	
 	<link rel="icon" href="img/icono.jpg">
 	
-    <base href="vistas/">
 	<!--=====================================
 	VÍNCULOS CSS
 	======================================-->
@@ -37,6 +38,10 @@
 
 	<!-- Hoja de estilo personalizada -->
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/habitaciones.css">
+	<link rel="stylesheet" href="css/reservas.css">
+	<link rel="stylesheet" href="css/perfil.css">
+
 
 	<!--=====================================
 	VÍNCULOS JAVASCRIPT
@@ -79,10 +84,18 @@
 </head>
 <body>
 <?php
-    include "paginas/modulos/header.php";
-    include "paginas/inicio.php";
-    include "paginas/modulos/footer.php";
-    include "paginas/modulos/modal.php";
+
+/*=============================================
+=            Páginas           =
+=============================================*/
+											  
+include "paginas/modulos/header.php";
+include "paginas/inicio.php";
+include "paginas/modulos/footer.php";
+include "paginas/modulos/modal.php";							  
+											  
+/*=====  End of Section Páginas  ======*/
+	
 ?>
 
 <script src="js/script.js"></script>
