@@ -12,7 +12,7 @@ HABITACIONES
 			
 			<div class="col-12 col-lg-4 pb-3 px-0 px-lg-3">
 
-				<a href="<?php echo $ruta; ?>index.php?pagina=habitaciones">
+				<a href="<?php echo $ruta; ?>habitaciones">
 					
 					<figure class="text-center">
 						
@@ -34,7 +34,7 @@ HABITACIONES
 
 			<div class="col-12 col-lg-4 pb-3 px-0 px-lg-3">
 
-				<a href="<?php echo $ruta; ?>index.php?pagina=habitaciones">
+				<a href="<?php echo $ruta; ?>habitaciones">
 					
 					<figure class="text-center">
 						
@@ -56,7 +56,7 @@ HABITACIONES
 
 			<div class="col-12 col-lg-4 pb-3 px-0 px-lg-3">
 
-				<a href="<?php echo $ruta; ?>index.php?pagina=habitaciones">
+				<a href="<?php echo $ruta; ?>habitaciones">
 					
 					<figure class="text-center">
 						

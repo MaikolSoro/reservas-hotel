@@ -16,7 +16,7 @@ INFO PERFIL
 				
 				<div class="cabeceraPerfil pt-4">
 					
-					<a href="<?php echo $ruta; ?>index.php?pagina=reservas" class="float-left lead text-white pt-1 px-3 mb-4">
+					<a href="<?php echo $ruta; ?>reservas" class="float-left lead text-white pt-1 px-3 mb-4">
 						<h5><i class="fas fa-chevron-left"></i> Regresar</h5>
 					</a>
 

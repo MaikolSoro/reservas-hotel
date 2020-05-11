@@ -12,7 +12,7 @@ HEADER
 			
 			<div class="grid-item">
 
-				<a href="<?php echo $ruta; ?>index.php">
+				<a href="<?php echo $ruta; ?>">
 				
 					<img src="img/logoPortobelo.png" class="img-fluid">
 
