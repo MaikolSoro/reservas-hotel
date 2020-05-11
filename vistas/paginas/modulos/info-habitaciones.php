@@ -20,7 +20,7 @@ INFO HABITACIÓN
 				
 				<div class="pt-4 cabeceraHabitacion">
 
-					<a href="index.html" class="float-left lead text-white pt-1 px-3">
+					<a href="<?php echo $ruta; ?>index.php" class="float-left lead text-white pt-1 px-3">
 						<h5><i class="fas fa-chevron-left"></i> Regresar</h5>
 					</a>
 
@@ -215,7 +215,7 @@ INFO HABITACIÓN
 
 							<div class="col-12 col-md-6 mt-2 mt-lg-0 input-group">
 								
-								<a href="reservas.html" class="w-100">
+								<a href="<?php echo $ruta; ?>index.php?pagina=reservas" class="w-100">
 									<input type="button" class="btn btn-block btn-md text-white" value="Ver disponibilidad" style="background:black">	
 								</a>
 
@@ -306,7 +306,7 @@ INFO HABITACIÓN
 
 							<div class="col-12 pb-3 px-0 px-lg-3">
 
-								<a href="habitaciones.html">
+								<a href="<?php echo $ruta; ?>index.php?pagina=habitaciones">
 									
 									<figure class="text-center">
 										
@@ -328,7 +328,7 @@ INFO HABITACIÓN
 
 							<div class="col-12 pb-3 px-0 px-lg-3">
 
-								<a href="habitaciones.html">
+								<a href="<?php echo $ruta; ?>index.php?pagina=habitaciones">
 									
 									<figure class="text-center">
 										

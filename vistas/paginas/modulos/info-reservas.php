@@ -20,7 +20,7 @@ INFO RESERVAS
 				
 				<div class="pt-4 cabeceraReservas">
 					
-					<a href="habitaciones.html" class="float-left lead text-white pt-1 px-3">
+					<a href="<?php echo $ruta; ?>index.php?pagina=habitaciones" class="float-left lead text-white pt-1 px-3">
 						<h5><i class="fas fa-chevron-left"></i> Regresar</h5>
 					</a>
 
@@ -31,7 +31,7 @@ INFO RESERVAS
 					<h6 class="float-right px-3">
 
 						<br>
-						<a href="perfil.html" style="color:#FFCC29">Ver tus reservas</a>
+						<a href="<?php echo $ruta; ?>index.php?pagina=perfil" style="color:#FFCC29">Ver tus reservas</a>
 
 					</h6>
 
@@ -105,7 +105,7 @@ INFO RESERVAS
 
 							<div class="col-12 col-md-6 mt-2 mt-lg-0 input-group">
 								
-								<a href="reservas.html" class="w-100">
+								<a href="<?php echo $ruta; ?>index.php?pagina=reservas" class="w-100">
 									<input type="button" class="btn btn-block btn-md text-white" value="Ver disponibilidad" style="background:black">	
 								</a>
 
@@ -182,7 +182,7 @@ INFO RESERVAS
 					
 					<div class="col-12 col-lg-6 col-xl-5">
 				
-						<a href="perfil.html">
+						<a href="<?php echo $ruta; ?>index.php?pagina=perfil">
 							<button class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
 						</a>
 

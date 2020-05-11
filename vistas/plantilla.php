@@ -1,3 +1,7 @@
+<?php
+$ruta = controladorRuta:: ctrRuta();
+?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,12 +89,38 @@
 <body>
 <?php
 
+include "paginas/modulos/header.php";
+
 /*=============================================
 =            Páginas           =
 =============================================*/
-											  
-include "paginas/modulos/header.php";
-include "paginas/inicio.php";
+
+if(isset($_GET["pagina"])){
+
+	if($_GET["pagina"] == "habitaciones"){
+
+		include "paginas/habitaciones.php";
+
+	}
+
+	if($_GET["pagina"] == "reservas"){
+
+		include "paginas/reservas.php";
+		
+	}
+
+	if($_GET["pagina"] == "perfil"){
+
+		include "paginas/perfil.php";
+		
+	}
+
+}else{
+
+	include "paginas/inicio.php";
+
+}
+
 include "paginas/modulos/footer.php";
 include "paginas/modulos/modal.php";							  
 											  
