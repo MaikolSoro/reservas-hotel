@@ -60,5 +60,16 @@ require_once "models/recorrido.models.php";
                                               
 /*=====  End of Section Se importa el controlador y el model del recorrido del pueblo  ======*/
 
+
+/*=============================================
+=            Section Se importa el controlador y el model del restaurante           =
+=============================================*/
+                                              
+require_once "controllers/restaurante.controlador.php";
+require_once "models/restaurante.models.php";
+                                              
+                                              
+/*=====  End of Section Se importa el controlador y el model del restaurante  ======*/
+
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
