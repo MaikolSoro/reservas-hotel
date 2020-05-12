@@ -9,5 +9,8 @@ require_once "models/banner.models.php";
 require_once "controllers/planes.controlador.php";
 require_once "models/planes.models.php";
 
+require_once "controllers/categorias.controlador.php";
+require_once "models/categorias.models.php";
+
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
