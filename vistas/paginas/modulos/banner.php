@@ -1,6 +1,5 @@
 <?php
     $banner = ControladorBanner::ctrMostrarBanner();
-    echo '<pre class="bg-white">'; print_r($banner); echo '</pre>';
 ?>
 
 <!--=====================================
@@ -15,21 +14,15 @@ BANNER
 			
 			<ul class="slide-area">
 				
-				 <li>					
-                    <img src="img/banner01.jpg" width="100%">
-                </li>
+            <?php foreach ($banner as $key => $value): ?>
+                
+        				
+                <li>					
+                   <img src="<?php echo $servidor.$value["img"]; ?>" width="100%">
+               </li>
+ 
 
-                <li>              	
-                    <img src="img/banner02.jpg" width="100%">
-                </li>
-
-                <li>               	
-                    <img src="img/banner03.jpg" width="100%">
-                </li>
-
-                <li>               	
-                    <img src="img/banner04.jpg" width="100%">
-                </li>
+              <?php endforeach ?>
 
 			</ul>
 
