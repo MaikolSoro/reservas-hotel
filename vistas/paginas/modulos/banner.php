@@ -1,3 +1,8 @@
+<?php
+    $banner = ControladorBanner::ctrMostrarBanner();
+    echo '<pre class="bg-white">'; print_r($banner); echo '</pre>';
+?>
+
 <!--=====================================
 BANNER
 ======================================-->
