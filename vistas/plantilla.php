@@ -96,31 +96,30 @@ include "paginas/modulos/header.php";
 =            Páginas           =
 =============================================*/
 
-if(isset($_GET["pagina"])){
 
-	if($_GET["pagina"] == "habitaciones"){
+	if(isset($_GET["pagina"])){
 
-		include "paginas/habitaciones.php";
+ 			$rutasCategorias = ControladorCategorias::ctrMostrarCategorias();
+		 
+			foreach ($rutasCategorias as $key => $value) {
+	 
+				if($_GET["pagina"] == $value["ruta"]){
+			
+					include "paginas/habitaciones.php";
+			
+				}
+			}
 
-	}
+			if($_GET["pagina"] == "reservas" || $_GET["pagina"] == "perfil"){
 
-	if($_GET["pagina"] == "reservas"){
-
-		include "paginas/reservas.php";
-		
-	}
-
-	if($_GET["pagina"] == "perfil"){
-
-		include "paginas/perfil.php";
-		
-	}
-
-}else{
+				include "paginas/".$_GET["pagina"].".php";
+				
+			}
+	} else{
 
 	include "paginas/inicio.php";
 
-}
+	}
 
 include "paginas/modulos/footer.php";
 include "paginas/modulos/modal.php";							  
