@@ -1,54 +1,5 @@
-/*=============================================
-FECHAS RESERVA
-=============================================*/
-$('.datepicker.entrada').datepicker({
-	startDate: '0d',
-	format: 'dd-mm-yyyy',
-	todayHighlight:true
-});
-
-$('.datepicker.entrada').change(function(){
-
-	var fechaEntrada = $(this).val();
-
-	$('.datepicker.salida').datepicker({
-		startDate: fechaEntrada,
-		datesDisabled: fechaEntrada,
-		format: 'dd-mm-yyyy'
-	});
-
-})
-
-/*=============================================
-BOTÓN RESERVA
-=============================================*/
-
-$(".mostrarBloqueReservas").click(function(){
-
-	$(".formReservas").slideToggle("fast");
-
-	$(".menu").slideUp('fast');
-
-	if($(".mostrarBloqueReservas").attr("modo") == "abajo"){
-
-		$(".mostrarBloqueReservas").attr("modo", "arriba");
-
-		$(".flechaReserva").removeClass("fa-caret-up");
-
-		$(".flechaReserva").addClass("fa-caret-down");
-
-	}else{
-
-		$(".mostrarBloqueReservas").attr("modo", "abajo");
-
-		$(".flechaReserva").removeClass("fa-caret-down");
-
-		$(".flechaReserva").addClass("fa-caret-up");
-
-	}
-
-	posicionBloqueReservas();
-})
+var urlPrincipal = $("#urlPrincipal").val();
+var urlServidor = $("#urlServidor").val();
 
 /*=============================================
 ANIMACIONES CON EL SCROLL
@@ -83,100 +34,35 @@ $(window).scroll(function(){
 })
 
 /*=============================================
-BOTONES IDIOMAS
+BOTÓN RESERVA
 =============================================*/
 
-$(".idiomaEn").click(function(){
+$(".mostrarBloqueReservas").click(function(){
 
-	$(this).removeClass("bg-white")
-	$(this).removeClass("text-dark")
+	$(".formReservas").slideToggle("fast");
 
-	$(this).addClass("bg-info")
-	$(this).addClass("text-white")
+	$(".menu").slideUp('fast');
 
-	$(".idiomaEs").removeClass("bg-info")
-	$(".idiomaEs").removeClass("text-white")
+	if($(".mostrarBloqueReservas").attr("modo") == "abajo"){
 
-	$(".idiomaEs").addClass("bg-white")
-	$(".idiomaEs").addClass("text-dark")
+		$(".mostrarBloqueReservas").attr("modo", "arriba");
 
+		$(".flechaReserva").removeClass("fa-caret-up");
 
+		$(".flechaReserva").addClass("fa-caret-down");
+
+	}else{
+
+		$(".mostrarBloqueReservas").attr("modo", "abajo");
+
+		$(".flechaReserva").removeClass("fa-caret-down");
+
+		$(".flechaReserva").addClass("fa-caret-up");
+
+	}
+
+	posicionBloqueReservas();
 })
-
-$(".idiomaEs").click(function(){
-
-	$(this).removeClass("bg-white")
-	$(this).removeClass("text-dark")
-
-	$(this).addClass("bg-info")
-	$(this).addClass("text-white")
-
-	$(".idiomaEn").removeClass("bg-info")
-	$(".idiomaEn").removeClass("text-white")
-
-	$(".idiomaEn").addClass("bg-white")
-	$(".idiomaEn").addClass("text-dark")
-
-
-})
-
-/*=============================================
-BOTÓN MENÚ
-=============================================*/
-
-if(window.matchMedia("(max-width:768px)").matches){
-
-	$(".botonMenu").click(function(){
-
-		$(".menuMovil").slideToggle('fast');
-		$(".menuMovil").css({"top":$("header").height()})
-
-	})	
-
-	$(".menuMovil ul li a").click(function(e){
-
-		$(".menuMovil").slideToggle('fast');
-
-		e.preventDefault();
-
-		var vinculo = $(this).attr("href");
-		
-		$("html, body").animate({
-
-			scrollTop: $(vinculo).offset().top - 55
-
-		}, 1000, "easeInOutBack")
-
-	})
-
-
-}else{
-
-	$(".botonMenu").click(function(){
-
-		$(".menu").slideToggle('fast');
-
-		$(".formReservas").slideUp('fast');
-
-	})
-
-	$(".menu ul li a").click(function(e){
-
-		$(".menu").slideToggle('fast');
-
-		e.preventDefault();
-
-		var vinculo = $(this).attr("href");
-		
-		$("html, body").animate({
-
-			scrollTop: $(vinculo).offset().top - 60
-
-		}, 1000, "easeInOutBack")
-
-	})
-
-}
 
 /*=============================================
 SCROLL UP
@@ -341,7 +227,7 @@ SLIDE HABITACIONES
 =============================================*/
 
  $("#myPano").pano({
-	img: "img/360.jpg"
+	img: $("#myPano").attr("back")
 });
 
  /*=============================================
@@ -394,7 +280,6 @@ $(".colIzqHabitaciones button").click(function(){
 POSICION BLOQUE RESERVAS
 =============================================*/
 
-
 function posicionBloqueReservas(){
 
 	if(window.matchMedia("(min-width:769px)").matches){
@@ -434,30 +319,3 @@ if(window.matchMedia("(max-width:768px)").matches){
 	$(".infoPerfil .colIzqPerfil").css({"margin-top":($("header").height()+100)+"px"})
 
 }
-
-/*=============================================
-CALENDARIO
-=============================================*/
-$('#calendar').fullCalendar({
-	header: {
-    	left: 'prev',
-    	center: 'title',
-    	right: 'next'
-  },
-  events: [
-    {
-      start: '2019-03-12',
-      end: '2019-03-15',
-      rendering: 'background',
-      color: '#847059'
-    },
-    {
-      start: '2019-03-22',
-      end: '2019-03-24',
-      rendering: 'background',
-      color: '#FFCC29'
-    }  
-  ]
-
-
-});
