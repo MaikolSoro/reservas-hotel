@@ -71,5 +71,16 @@ require_once "models/restaurante.models.php";
                                               
 /*=====  End of Section Se importa el controlador y el model del restaurante  ======*/
 
+
+/*=============================================
+=            Section Se importa el controlador y el model las habitaciones          =
+=============================================*/
+                                              
+require_once "controllers/habitaciones.controlador.php";
+require_once "models/habitaciones.models.php";
+                                              
+                                              
+/*=====  End of Section Se importa el controlador y el model de las habitaciones ======*/
+
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

@@ -1,3 +1,10 @@
+<?php
+
+$valor = $_GET["pagina"];
+$habitaciones = ControladorHabitaciones:: ctrMostrarHabitaciones($valor);
+
+?>
+
 <!--=====================================
 INFO HABITACIÓN
 ======================================-->
