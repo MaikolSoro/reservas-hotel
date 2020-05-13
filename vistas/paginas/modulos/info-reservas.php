@@ -6,7 +6,8 @@
 */
 if(isset($_POST["id-habitacion"])){
 
-	
+	$valor = $_POST["id-habitacion"];
+	$reservas = ControladorReservas::ctrMostrarReservas($valor);
 } else {
 	//Sino viene una variable post id_habitacion  no le dejo pasar lo mando a la pagina de inicio
 	echo '<script> window.location="'.$ruta.'"</script>';
@@ -61,7 +62,17 @@ INFO RESERVAS
 
 				<div class="bg-white p-4 calendarioReservas">
 
+				<!-- Filtro -->
+				<?php if (!$reservas): ?>
+
 					<h1 class="pb-5 float-left">¡Está Disponible!</h1>
+
+				<?php else: ?>
+
+					<div class="infoDisponibilidad"></div>
+
+				<?php endif ?>
+
 
 					<div class="float-right pb-3">
 							
