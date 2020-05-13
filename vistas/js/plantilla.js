@@ -207,17 +207,17 @@ if(window.matchMedia("(max-width:768px)").matches){
 SLIDE HABITACIONES
 =============================================*/
 
- $('.slideHabitaciones').jdSlider( {
+$('.slideHabitaciones').jdSlider( {
 
- 	isSliding: true,
-    isAuto: true,
-    isLoop: true,
-    isDrag: true,
-    interval: 3000,
-    isCursor: false,
-    margin:0,
-    timingFunction: 'ease',
-    easing: 'swing'
+   isSliding: true,
+   isAuto: true,
+   isLoop: false,
+   isDrag: true,
+   interval: 3000,
+   isCursor: false,
+   margin:0,
+   timingFunction: 'ease',
+   easing: 'swing'
 
 
 });

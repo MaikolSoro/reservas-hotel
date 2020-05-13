@@ -1,6 +1,6 @@
 <?php
-$ruta = controladorRuta:: ctrRuta();
-$servidor = controladorRuta:: ctrServidor();
+$ruta = ControladorRuta::ctrRuta();
+$servidor = ControladorRuta::ctrServidor();
 ?>
  
 <!DOCTYPE html>
@@ -96,30 +96,45 @@ include "paginas/modulos/header.php";
 =            Páginas           =
 =============================================*/
 
+if(isset($_GET["pagina"])){
 
-	if(isset($_GET["pagina"])){
+	$rutasCategorias = ControladorCategorias::ctrMostrarCategorias();
 
- 			$rutasCategorias = ControladorCategorias::ctrMostrarCategorias();
-		 
-			foreach ($rutasCategorias as $key => $value) {
-	 
-				if($_GET["pagina"] == $value["ruta"]){
-			
-					include "paginas/habitaciones.php";
-			
-				}
-			}
+	$validarRuta = "";
 
-			if($_GET["pagina"] == "reservas" || $_GET["pagina"] == "perfil"){
+	foreach ($rutasCategorias as $key => $value) {
 
-				include "paginas/".$_GET["pagina"].".php";
-				
-			}
-	} else{
+		if($_GET["pagina"] == $value["ruta"]){
+
+			$validarRuta = "habitaciones";
+
+		}
+		
+	}
+
+	if($_GET["pagina"] == "reservas" || $_GET["pagina"] == "perfil"){
+
+		include "paginas/".$_GET["pagina"].".php";
+		
+	}else if($validarRuta != ""){
+
+		include "paginas/habitaciones.php";
+
+	}else{
+
+		echo '<script>
+
+		window.location = "'.$ruta.'";
+
+		</script>';
+	}
+
+}else{
 
 	include "paginas/inicio.php";
 
-	}
+}
+
 
 include "paginas/modulos/footer.php";
 include "paginas/modulos/modal.php";							  
@@ -127,6 +142,8 @@ include "paginas/modulos/modal.php";
 /*=====  End of Section Páginas  ======*/
 	
 ?>
+<input type="hidden" value="<?php echo $ruta; ?>" id="urlPrincipal">
+<input type="hidden" value="<?php echo $servidor; ?>" id="urlServidor">
 
 <script src="js/plantilla.js"></script>
 <script src="js/menu.js"></script>

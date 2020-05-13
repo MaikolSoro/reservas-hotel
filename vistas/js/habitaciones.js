@@ -72,11 +72,11 @@ $(".cabeceraHabitacion ul.nav li.nav-item a").click(function(e){
 	
 			for(var i = 0; i < galeria.length; i++){		
 
-				$(listaSlide[0]).html('<img class="img-fluid" src="'+urlServidor+galeria[galeria.length-1]+'">')
+				// $(listaSlide[0]).html('<img class="img-fluid" src="'+urlServidor+galeria[galeria.length-1]+'">')
 
-				$(listaSlide[i+1]).html('<img class="img-fluid" src="'+urlServidor+galeria[i]+'">')
+				$(listaSlide[i]).html('<img class="img-fluid" src="'+urlServidor+galeria[i]+'">')
 
-				$(listaSlide[galeria.length+1]).html('<img class="img-fluid" src="'+urlServidor+galeria[0]+'">')
+				// $(listaSlide[galeria.length+1]).html('<img class="img-fluid" src="'+urlServidor+galeria[0]+'">')
 			}
 
 
