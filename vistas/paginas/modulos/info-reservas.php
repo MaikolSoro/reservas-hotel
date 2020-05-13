@@ -1,3 +1,19 @@
+<?php
+/**
+*
+* Si viene una variable post id_habitacion , entonces lo dejo pasar a la pagina reservas
+*
+*/
+if(isset($_POST["id-habitacion"])){
+
+	
+} else {
+	//Sino viene una variable post id_habitacion  no le dejo pasar lo mando a la pagina de inicio
+	echo '<script> window.location="'.$ruta.'"</script>';
+}
+
+?>
+
 <!--=====================================
 INFO RESERVAS
 ======================================-->
@@ -75,45 +91,47 @@ INFO RESERVAS
 
 					<h6 class="lead pt-4 pb-2">Puede modificar la fecha de acuerdo a los días disponibles:</h6>
 
-					<div class="container mb-3">
+					<form action="<?php echo $ruta; ?>reservas" method="post">
 
-						<div class="row py-2" style="background:#509CC3">
+						<input type ="hidden" name="id_habitacion" value="<?php echo $_POST["id-habitacion"]; ?>">	
+						
+						<div class="container mb-3">
 
-							 <div class="col-6 col-md-3 input-group pr-1">
-							
-								<input type="text" class="form-control datepicker entrada" placeholder="Entrada">
+							<div class="row py-2" style="background:#509CC3">
 
-								<div class="input-group-append">
-									
-									<span class="input-group-text"><i class="far fa-calendar-alt small text-gray-dark"></i></span>
+								<div class="col-6 col-md-3 input-group pr-1">
 								
+									<input type="text" class="form-control datepicker entrada" placeholder="Entrada" name="fecha-ingreso" required>
+
+									<div class="input-group-append">
+										
+										<span class="input-group-text"><i class="far fa-calendar-alt small text-gray-dark"></i></span>
+									
+									</div>
+
 								</div>
 
-							</div>
-
-						 	<div class="col-6 col-md-3 input-group pl-1">
-							
-								<input type="text" class="form-control datepicker salida" placeholder="Salida">
-
-								<div class="input-group-append">
-									
-									<span class="input-group-text"><i class="far fa-calendar-alt small text-gray-dark"></i></span>
+								<div class="col-6 col-md-3 input-group pl-1">
 								
+									<input type="text" class="form-control datepicker salida" placeholder="Salida" name="fecha-salida" required>
+
+									<div class="input-group-append">
+										
+										<span class="input-group-text"><i class="far fa-calendar-alt small text-gray-dark"></i></span>
+									
+									</div>
+
 								</div>
 
-							</div>
+								<div class="col-12 col-md-6 mt-2 mt-lg-0 input-group">
+									
+									<input type="submit" class="btn btn-block btn-md text-white" value="Ver disponibilidad" style="background:green">	
 
-							<div class="col-12 col-md-6 mt-2 mt-lg-0 input-group">
-								
-								<a href="<?php echo $ruta; ?>reservas" class="w-100">
-									<input type="button" class="btn btn-block btn-md text-white" value="Ver disponibilidad" style="background:black">	
-								</a>
+								</div>
 
 							</div>
 
 						</div>
-
-					</div>
 
 				</div>
 

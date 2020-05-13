@@ -1,3 +1,7 @@
+<?php
+	$categorias = ControladorCategorias:: ctrMostrarCategorias();
+?>
+
 <!--=====================================
 HEADER
 ======================================-->
@@ -37,65 +41,66 @@ HEADER
 				<!--=====================================
 				FORMULARIO DE RESERVAS
 				======================================-->
-
-				<div class="formReservas py-1 py-lg-2 px-4">
-					
-					<div class="form-group my-4">
-						<select class="form-control form-control-lg">
-							<option>Tipo de habitación</option>
-							<option>Suite</option>
-							<option>Especial</option>
-							<option>Standar</option>
-						</select>
-					</div>
-
-					<div class="form-group my-4">
-						<select class="form-control form-control-lg">
-							<option>Temática de habitación</option>
-							<option>Oriental</option>
-							<option>Contemporánea</option>
-							<option>Africana</option>
-							<option>Clásica</option>
-							<option>Retro</option>
-						</select>
-					</div>
-
-					<div class="row">
+				<form action="<?php echo $ruta; ?>reservas" method="post">
+					<div class="formReservas py-1 py-lg-2 px-4">
 						
-						 <div class="col-6 input-group input-group-lg pr-1">
-						
-							<input type="text" class="form-control datepicker entrada" placeholder="Entrada">
+						<div class="form-group my-4">
+							<select class="form-control form-control-lg selectTipoHabitacion" required>
+								<option value="Tipo de habitación">Tipo de habitación</option>
 
-							<div class="input-group-append">
+								<?php foreach($categorias as $key => $value): ?>
 								
-								<span class="input-group-text p-2">
-									<i class="far fa-calendar-alt small text-gray-dark"></i>
-								</span>
+								<option value="<?php echo $value["ruta"]; ?>"><?php echo $value["tipo"]; ?></option>
+
+								<?php endforeach ?>
+							</select>
+						</div>
+
+						<div class="form-group my-4">
+							<select class="form-control form-control-lg selectTemaHabitacion" name="id-habitacion" required>
+
+								<option>Temática de habitación</option>
+								
+							</select>
+						</div>
+
+						<div class="row">
 							
+							<div class="col-6 input-group input-group-lg pr-1">
+							
+								<input type="text" class="form-control datepicker entrada" placeholder="Entrada" name="fecha-ingreso" required>
+
+								<div class="input-group-append">
+									
+									<span class="input-group-text p-2">
+										<i class="far fa-calendar-alt small text-gray-dark"></i>
+									</span>
+								
+								</div>
+
+							</div>
+
+							<div class="col-6 input-group input-group-lg pl-1">
+							
+								<input type="text" class="form-control datepicker salida" placeholder="Salida" name="fecha-salida" required>
+
+								<div class="input-group-append">
+									
+									<span class="input-group-text p-2">
+										<i class="far fa-calendar-alt small text-gray-dark"></i>
+									</span>
+								
+								</div>
+
 							</div>
 
 						</div>
 
-						<div class="col-6 input-group input-group-lg pl-1">
+						<input type="submit" class="btn btn-block btn-lg my-4 text-white" value="Ver disponibilidad">
 						
-							<input type="text" class="form-control datepicker salida" placeholder="Salida">
-
-							<div class="input-group-append">
-								
-								<span class="input-group-text p-2">
-									<i class="far fa-calendar-alt small text-gray-dark"></i>
-								</span>
-							
-							</div>
-
-						</div>
 
 					</div>
-
-					<input type="button" class="btn btn-block btn-lg my-4 text-white" value="Ver disponibilidad">
-					
-
-				</div>
+				</form>
 
 			</div>
 

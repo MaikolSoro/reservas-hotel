@@ -19,6 +19,44 @@ $('.datepicker.entrada').change(function(){
 
 })
 
+/*=============================================
+SELECTS ANIDADOS
+=============================================*/
+$(".selectTipoHabitacion").change(function(){
+
+  var ruta = $(this).val();
+
+  if(ruta != "Tipo de habitación"){
+    
+    // Para que este vacio cuando cambie el tipo de habitacion
+    $(".selectTemaHabitacion").html("");
+  } else {
+    
+    $(".selectTemaHabitacion").html('<option>Temática de habitación</option>')
+  }
+
+  var datos = new FormData();
+  datos.append("ruta", ruta);
+
+  $.ajax({
+     url: urlPrincipal+"ajax/habitaciones.ajax.php",
+     method: "POST",
+     data: datos,
+     cache: false,
+     contentType: false,
+     processData: false,
+     dataType:"json",
+     success:function(respuesta){
+
+      for(var i = 0; i < respuesta.length; i++){
+        $(".selectTemaHabitacion").append('<option value="'+respuesta[i]["id_h"]+'">'+respuesta[i]["estilo"]+'</option>')
+      }
+     }
+  })
+})
+
+
+
 
 /*=============================================
 CALENDARIO
