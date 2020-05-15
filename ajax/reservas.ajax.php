@@ -1,7 +1,7 @@
 <?php
 
 require_once "../controllers/reservas.controlador.php";
-require_once "../models/reservas.modelo.php";
+require_once "../models/reservas.models.php";
 
 
 class AjaxReservas{

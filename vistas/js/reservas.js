@@ -28,7 +28,7 @@ $(".selectTipoHabitacion").change(function(){
 
   var ruta = $(this).val();
 
-  if(ruta != "Tipo de habitación"){
+  if(ruta != ""){
     
     // Para que este vacio cuando cambie el tipo de habitacion
     $(".selectTemaHabitacion").html("");
@@ -72,6 +72,12 @@ if($(".infoReservas").html() != undefined){
   var fechaSalida = $(".infoReservas").attr("fechaSalida");
   var dias = $(".infoReservas").attr("dias");
 
+  var totalEventos = [];
+  var opcion1 = [];
+  var opcion2 = [];
+  var opcion3 = [];
+  var validarDisponibilidad = false;
+
   var datos = new FormData();
   datos.append("idHabitacion", idHabitacion);
 
@@ -89,7 +95,7 @@ if($(".infoReservas").html() != undefined){
         if(respuesta.length == 0){
 
           $('#calendar').fullCalendar({
-            defaultDate:fechaIngreso,
+            // defaultDate:fechaIngreso,
             header: {
                 left: 'prev',
                 center: 'title',
@@ -105,9 +111,124 @@ if($(".infoReservas").html() != undefined){
             ]
 
           });
-      }
-  
-    }
-  });
-}
+          $(".colDerReservas").show();
 
+      } else {
+
+        for(var i = 0; i < respuesta.length; i++) {
+
+            /* VALIDAR CRUCE DE FECHAS OPCIÓN 1 */         
+
+            if(fechaIngreso == respuesta[i]["fecha_ingreso"]){
+
+              opcion1[i] = false;            
+
+            }else{
+
+              opcion1[i] = true;
+
+            }
+             /* VALIDAR CRUCE DE FECHAS OPCIÓN 2 */         
+
+             if(fechaIngreso > respuesta[i]["fecha_ingreso"] && fechaIngreso < respuesta[i]["fecha_salida"]){
+
+              opcion2[i] = false;            
+
+            }else{
+
+              opcion2[i] = true;
+
+            }
+
+             /* VALIDAR CRUCE DE FECHAS OPCIÓN 3 */         
+
+            if(fechaIngreso < respuesta[i]["fecha_ingreso"] && fechaSalida > respuesta[i]["fecha_ingreso"]){
+
+              opcion3[i] = false;            
+
+            }else{
+
+              opcion3[i] = true;
+
+            }
+
+             /* VALIDAR DISPONIBILIDAD */    
+
+             if(opcion1[i] == false || opcion2[i] == false || opcion3[i] == false){
+
+              validarDisponibilidad = false;
+            
+            }else{
+
+              validarDisponibilidad = true;
+             
+            }
+
+
+         // console.log("validarDisponibilidad", validarDisponibilidad);
+
+         if(!validarDisponibilidad){
+
+          totalEventos.push(
+            {
+              "start": respuesta[i]["fecha_ingreso"],
+              "end": respuesta[i]["fecha_salida"],
+              "rendering": 'background',
+              "color": '#847059'
+            }
+          )
+
+           $(".infoDisponibilidad").html('<h5 class="pb-5 float-left">¡Lo sentimos, no hay disponibilidad para esa fecha!<br><br><strong>¡Vuelve a intentarlo!</strong></h5>');
+            
+           break;
+
+        }else{
+
+        totalEventos.push(
+          {
+            "start": respuesta[i]["fecha_ingreso"],
+            "end": respuesta[i]["fecha_salida"],
+            "rendering": 'background',
+            "color": '#847059'
+          }
+
+        )
+
+        $(".infoDisponibilidad").html('<h1 class="pb-5 float-left">¡Está Disponible!</h1>'); 
+        $(".colDerReservas").show();
+        // colDerReservas();
+      }        
+
+    }
+    // FIN CICLO FOR
+      if(validarDisponibilidad){
+
+        totalEventos.push(
+          {
+              "start": fechaIngreso,
+              "end": fechaSalida,
+              "rendering": 'background',
+              "color": '#FFCC29'
+            }
+        )
+
+      }
+
+      $('#calendar').fullCalendar({
+        defaultDate:fechaIngreso,
+        header: {
+            left: 'prev',
+            center: 'title',
+            right: 'next'
+        },
+        events:totalEventos
+
+      });
+
+    }
+
+  }
+
+  })
+
+}
