@@ -10,6 +10,10 @@ if(isset($_POST["id-habitacion"])){
 	$reservas = ControladorReservas::ctrMostrarReservas($valor);
 	$planes = ControladorPlanes::ctrMostrarPlanes();
 	
+	
+	/*=============================================
+	DEFINIR PRECIOS DE TEMPORADA
+	=============================================*/
 	date_default_timezone_set("America/Costa_Rica");
 
 
