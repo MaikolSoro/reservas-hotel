@@ -16,6 +16,20 @@ Class ControladorReservas{
 
 		return $respuesta;
 
-    }
+	}
+	
+	/*=============================================
+	Mostrar Código Reserva Singular
+	=============================================*/
+	
+	static public function ctrMostrarCodigoReserva($valor){
+
+		$tabla = "reservas";
+
+		$respuesta = ModelReservas::mdlMostrarCodigoReserva($tabla, $valor);
+
+		return $respuesta;
+
+	}
     
 }

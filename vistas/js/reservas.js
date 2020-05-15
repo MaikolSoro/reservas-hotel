@@ -58,8 +58,6 @@ $(".selectTipoHabitacion").change(function(){
 })
 
 
-
-
 /*=============================================
 CALENDARIO
 =============================================*/
@@ -111,7 +109,7 @@ if($(".infoReservas").html() != undefined){
             ]
 
           });
-          $(".colDerReservas").show();
+         colDerReservas();
 
       } else {
 
@@ -195,8 +193,8 @@ if($(".infoReservas").html() != undefined){
         )
 
         $(".infoDisponibilidad").html('<h1 class="pb-5 float-left">¡Está Disponible!</h1>'); 
-        $(".colDerReservas").show();
-        // colDerReservas();
+        // $(".colDerReservas").show();
+         colDerReservas();
       }        
 
     }
@@ -230,5 +228,67 @@ if($(".infoReservas").html() != undefined){
   }
 
   })
+
+}
+
+/*=============================================
+CÓDIGO ALEATORIO
+=============================================*/
+
+var chars ="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+function codigoAleatorio(chars, length){
+
+  codigo = "";
+
+  for(var i = 0; i < length; i++){
+
+    rand = Math.floor(Math.random()*chars.length);
+    codigo += chars.substr(rand, 1);
+  
+  }
+
+  return codigo;
+
+}
+
+
+/*=============================================
+FUNCIÓN COL.DERECHA RESERVAS
+=============================================*/
+
+function colDerReservas(){
+
+  $(".colDerReservas").show(); 
+
+  var codigoReserva = codigoAleatorio(chars, 9);
+  
+  var datos = new FormData();
+  datos.append("codigoReserva", codigoReserva);
+
+  $.ajax({
+
+   url:urlPrincipal+"ajax/reservas.ajax.php",
+   method: "POST",
+   data: datos,
+   cache: false,
+   contentType: false,
+   processData: false,
+   dataType:"json",
+   success:function(respuesta){
+    
+      if(!respuesta){
+        // no hay concidencia
+        $(".codigoReserva").html(codigoReserva);
+
+      }else{
+
+         $(".codigoReserva").html(codigoReserva+codigoAleatorio(chars, 3));
+
+      }
+
+   }
+
+ })
 
 }
