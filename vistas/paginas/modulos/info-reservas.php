@@ -8,6 +8,36 @@ if(isset($_POST["id-habitacion"])){
 
 	$valor = $_POST["id-habitacion"];
 	$reservas = ControladorReservas::ctrMostrarReservas($valor);
+	$planes = ControladorPlanes::ctrMostrarPlanes();
+	
+	date_default_timezone_set("America/Costa_Rica");
+
+
+	$hoy = getdate();
+
+	if($hoy["mon"] == 12 && $hoy["mday"] >= 15 && $hoy["mday"] <= 31 ||
+	   $hoy["mon"] == 1 && $hoy["mday"] >= 1 && $hoy["mday"] <= 15 ||
+	   $hoy["mon"] == 6 && $hoy["mday"] >= 15 && $hoy["mday"] <= 31 ||
+	   $hoy["mon"] == 7 && $hoy["mday"] >= 1 && $hoy["mday"] <= 15){
+
+		$precioContinental = $reservas[$indice]["continental_alta"];
+		$precioAmericano = $reservas[$indice]["americano_alta"];
+		$precioRomantico = $reservas[$indice]["americano_alta"] + $planes[0]["precio_alta"];
+		$precioLunaDeMiel = $reservas[$indice]["americano_alta"] + $planes[1]["precio_alta"];
+		$precioAventura = $reservas[$indice]["americano_alta"] + $planes[2]["precio_alta"];
+		$precioSPA = $reservas[$indice]["americano_alta"] + $planes[3]["precio_alta"];
+
+	}else{
+
+		$precioContinental = $reservas[$indice]["continental_baja"];
+		$precioAmericano = $reservas[$indice]["americano_baja"];
+		$precioRomantico = $reservas[$indice]["americano_baja"] + $planes[0]["precio_baja"];
+		$precioLunaDeMiel = $reservas[$indice]["americano_baja"] + $planes[1]["precio_baja"];
+		$precioAventura = $reservas[$indice]["americano_baja"] + $planes[2]["precio_baja"];
+		$precioSPA = $reservas[$indice]["americano_baja"] + $planes[3]["precio_baja"];
+
+	}
+
 } else {
 	//Sino viene una variable post id_habitacion  no le dejo pasar lo mando a la pagina de inicio
 	echo '<script> window.location="'.$ruta.'"</script>';
@@ -159,18 +189,18 @@ INFO RESERVAS
 				<h2 class="colorTitulos"><strong class="codigoReserva"></strong></h2>
 
 				<div class="form-group">
-				  <label>Ingreso:</label>
-				  <input type="date" class="form-control" value="2019-03-13" readonly>
+				  <label>Ingreso 3:00 pm:</label>
+				  <input type="date" class="form-control" value="<?php echo $_POST["fecha-ingreso"];?>" readonly>
 				</div>
 
 				<div class="form-group">
-				  <label>Salida:</label>
-				  <input type="date" class="form-control" value="2019-03-15"  readonly>
+				  <label>Salida 1:00 pm:</label>
+				  <input type="date" class="form-control" value="<?php echo $_POST["fecha-salida"];?>"  readonly>
 				</div>
 
 				<div class="form-group">
 				  <label>Habitación:</label>
-				  <input type="text" class="form-control" value="Habitación Suite Oriental" readonly>
+				  <input type="text" class="form-control" value="Habitación <?php echo $reservas[0]["tipo"]." ".$reservas[0]["estilo"]; ?>" readonly>
 
 				  <img src="img/oriental.png" class="img-fluid">
 
@@ -180,12 +210,12 @@ INFO RESERVAS
 				  <label>Plan:</label>
 				  <select class="form-control">
 				  	
-					<option value="continental">Plan Continental</option>
-					<option value="americano">Plan Americano</option>
-					<option value="romantico">Plan Romántico</option>
-					<option value="lunademiel">Plan Luna de Miel</option>
-					<option value="aventura">Plan Aventura</option>
-					<option value="spa">Plan SPA</option>
+				  	<option value="<?php echo $precioContinental;?>,Plan Continental">Plan Continental $<?php echo number_format($precioContinental); ?> 1 día 1 noche</option>
+					<option value="<?php echo $precioAmericano;?>,Plan Americano">Plan Americano $<?php echo number_format($precioAmericano); ?> 1 día 1 noche</option>
+					<option value="<?php echo $precioRomantico;?>,Plan Romantico">Plan Romántico $<?php echo number_format($precioRomantico); ?> 1 día 1 noche</option>
+					<option value="<?php echo $precioLunaDeMiel;?>,Plan Luna de Miel">Plan Luna de Miel $<?php echo number_format($precioLunaDeMiel); ?> 1 día 1 noche</option>
+					<option value="<?php echo $precioAventura;?>,Plan Aventura">Plan Aventura $<?php echo number_format($precioAventura); ?> 1 día 1 noche</option>
+					<option value="<?php echo $precioSPA;?>,Plan SPA">Plan SPA $<?php echo number_format($precioSPA); ?> 1 día 1 noche</option>
 
 				  </select>
 				</div>
