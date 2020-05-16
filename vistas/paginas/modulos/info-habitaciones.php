@@ -153,14 +153,16 @@ INFO HABITACIÓN
 					<form action="<?php echo $ruta; ?>reservas" method="post">
 
 						<input type ="hidden" name="id_habitacion" value="<?php echo $habitaciones[0]["id_h"]; ?>">
+
+						<input type ="hidden" name="ruta" value="<?php echo $habitaciones[0]["ruta"]; ?>">
 						
 						<div class="container">
 
 							<div class="row py-2" style="background:#509CC3">
 
-								<div class="col-6 col-md-3 input-group pr-1">
+								 <div class="col-6 col-md-3 input-group pr-1">
 								
-									<input type="text" class="form-control datepicker entrada" placeholder="Entrada" name="fecha-ingreso" required>
+									<input type="text" class="form-control datepicker entrada" placeholder="Entrada" autocomplete="off" name="fecha-ingreso"  required>
 
 									<div class="input-group-append">
 										
@@ -172,7 +174,7 @@ INFO HABITACIÓN
 
 								<div class="col-6 col-md-3 input-group pl-1">
 								
-									<input type="text" class="form-control datepicker salida" placeholder="Salida" name = "fecha-salida" required>
+								<input type="text" class="form-control datepicker salida" placeholder="Salida" autocomplete="off" name="fecha-salida" readonly required>
 
 									<div class="input-group-append">
 										

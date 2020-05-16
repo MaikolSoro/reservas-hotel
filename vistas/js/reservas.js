@@ -2,59 +2,61 @@
 FECHAS RESERVA
 =============================================*/
 $('.datepicker.entrada').datepicker({
-	startDate: '0d',
-	format: 'yyyy-mm-dd',
-	todayHighlight:true
+    startDate: '0d',
+    format: 'yyyy-mm-dd',
+    todayHighlight: true
 });
 
-$('.datepicker.entrada').change(function(){
+$('.datepicker.entrada').change(function() {
 
-  $('.datepicker.salida').attr("readonly", false);
-  
-	var fechaEntrada = $(this).val();
+    $('.datepicker.salida').attr("readonly", false);
 
-	$('.datepicker.salida').datepicker({
-		startDate: fechaEntrada,
-		datesDisabled: fechaEntrada,
-		format: 'yyyy-mm-dd'
-	});
+    var fechaEntrada = $(this).val();
+
+    $('.datepicker.salida').datepicker({
+        startDate: fechaEntrada,
+        datesDisabled: fechaEntrada,
+        format: 'yyyy-mm-dd'
+    });
 
 })
 
 /*=============================================
 SELECTS ANIDADOS
 =============================================*/
-$(".selectTipoHabitacion").change(function(){
+$(".selectTipoHabitacion").change(function() {
 
-  var ruta = $(this).val();
+    var ruta = $(this).val();
 
-  if(ruta != ""){
-    
-    // Para que este vacio cuando cambie el tipo de habitacion
-    $(".selectTemaHabitacion").html("");
-  } else {
-    
-    $(".selectTemaHabitacion").html('<option>Temática de habitación</option>')
-  }
+    if (ruta != "") {
 
-  var datos = new FormData();
-  datos.append("ruta", ruta);
+        // Para que este vacio cuando cambie el tipo de habitacion
+        $(".selectTemaHabitacion").html("");
+    } else {
 
-  $.ajax({
-     url: urlPrincipal+"ajax/habitaciones.ajax.php",
-     method: "POST",
-     data: datos,
-     cache: false,
-     contentType: false,
-     processData: false,
-     dataType:"json",
-     success:function(respuesta){
+        $(".selectTemaHabitacion").html('<option>Temática de habitación</option>')
+    }
 
-      for(var i = 0; i < respuesta.length; i++){
-        $(".selectTemaHabitacion").append('<option value="'+respuesta[i]["id_h"]+'">'+respuesta[i]["estilo"]+'</option>')
-      }
-     }
-  })
+    var datos = new FormData();
+    datos.append("ruta", ruta);
+
+    $.ajax({
+        url: urlPrincipal + "ajax/habitaciones.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
+
+            $("input[name='ruta']").val(respuesta[0]["ruta"]);
+
+            for (var i = 0; i < respuesta.length; i++) {
+                $(".selectTemaHabitacion").append('<option value="' + respuesta[i]["id_h"] + '">' + respuesta[i]["estilo"] + '</option>')
+            }
+        }
+    })
 })
 
 
@@ -62,172 +64,165 @@ $(".selectTipoHabitacion").change(function(){
 CALENDARIO
 =============================================*/
 
-if($(".infoReservas").html() != undefined){
+if ($(".infoReservas").html() != undefined) {
 
-  var idHabitacion = $(".infoReservas").attr("idHabitacion");
-  // console.log("idHabitacion", idHabitacion);
-  var fechaIngreso = $(".infoReservas").attr("fechaIngreso");
-  var fechaSalida = $(".infoReservas").attr("fechaSalida");
-  var dias = $(".infoReservas").attr("dias");
+    var idHabitacion = $(".infoReservas").attr("idHabitacion");
+    // console.log("idHabitacion", idHabitacion);
+    var fechaIngreso = $(".infoReservas").attr("fechaIngreso");
+    var fechaSalida = $(".infoReservas").attr("fechaSalida");
+    var dias = $(".infoReservas").attr("dias");
 
-  var totalEventos = [];
-  var opcion1 = [];
-  var opcion2 = [];
-  var opcion3 = [];
-  var validarDisponibilidad = false;
+    var totalEventos = [];
+    var opcion1 = [];
+    var opcion2 = [];
+    var opcion3 = [];
+    var validarDisponibilidad = false;
 
-  var datos = new FormData();
-  datos.append("idHabitacion", idHabitacion);
+    var datos = new FormData();
+    datos.append("idHabitacion", idHabitacion);
 
     $.ajax({
 
-      url:urlPrincipal+"ajax/reservas.ajax.php",
-      method: "POST",
-      data: datos,
-      cache: false,
-      contentType: false,
-      processData: false,
-      dataType:"json",
-      success:function(respuesta){
+        url: urlPrincipal + "ajax/reservas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
 
-        if(respuesta.length == 0){
+            if (respuesta.length == 0) {
 
-          $('#calendar').fullCalendar({
-            // defaultDate:fechaIngreso,
-            header: {
-                left: 'prev',
-                center: 'title',
-                right: 'next'
-            },
-            events: [
-              {
-                start: fechaIngreso,
-                end: fechaSalida,
-                rendering: 'background',
-                color: '#FFCC29'
-              }
-            ]
+                $('#calendar').fullCalendar({
+                    // defaultDate:fechaIngreso,
+                    header: {
+                        left: 'prev',
+                        center: 'title',
+                        right: 'next'
+                    },
+                    events: [{
+                        start: fechaIngreso,
+                        end: fechaSalida,
+                        rendering: 'background',
+                        color: '#FFCC29'
+                    }]
 
-          });
-         colDerReservas();
+                });
+                colDerReservas();
 
-      } else {
+            } else {
 
-        for(var i = 0; i < respuesta.length; i++) {
+                for (var i = 0; i < respuesta.length; i++) {
 
-            /* VALIDAR CRUCE DE FECHAS OPCIÓN 1 */         
+                    /* VALIDAR CRUCE DE FECHAS OPCIÓN 1 */
 
-            if(fechaIngreso == respuesta[i]["fecha_ingreso"]){
+                    if (fechaIngreso == respuesta[i]["fecha_ingreso"]) {
 
-              opcion1[i] = false;            
+                        opcion1[i] = false;
 
-            }else{
+                    } else {
 
-              opcion1[i] = true;
+                        opcion1[i] = true;
+
+                    }
+                    /* VALIDAR CRUCE DE FECHAS OPCIÓN 2 */
+
+                    if (fechaIngreso > respuesta[i]["fecha_ingreso"] && fechaIngreso < respuesta[i]["fecha_salida"]) {
+
+                        opcion2[i] = false;
+
+                    } else {
+
+                        opcion2[i] = true;
+
+                    }
+
+                    /* VALIDAR CRUCE DE FECHAS OPCIÓN 3 */
+
+                    if (fechaIngreso < respuesta[i]["fecha_ingreso"] && fechaSalida > respuesta[i]["fecha_ingreso"]) {
+
+                        opcion3[i] = false;
+
+                    } else {
+
+                        opcion3[i] = true;
+
+                    }
+
+                    /* VALIDAR DISPONIBILIDAD */
+
+                    if (opcion1[i] == false || opcion2[i] == false || opcion3[i] == false) {
+
+                        validarDisponibilidad = false;
+
+                    } else {
+
+                        validarDisponibilidad = true;
+
+                    }
+
+
+                    // console.log("validarDisponibilidad", validarDisponibilidad);
+
+                    if (!validarDisponibilidad) {
+
+                        totalEventos.push({
+                            "start": respuesta[i]["fecha_ingreso"],
+                            "end": respuesta[i]["fecha_salida"],
+                            "rendering": 'background',
+                            "color": '#847059'
+                        })
+
+                        $(".infoDisponibilidad").html('<h5 class="pb-5 float-left">¡Lo sentimos, no hay disponibilidad para esa fecha!<br><br><strong>¡Vuelve a intentarlo!</strong></h5>');
+
+                        break;
+
+                    } else {
+
+                        totalEventos.push({
+                                "start": respuesta[i]["fecha_ingreso"],
+                                "end": respuesta[i]["fecha_salida"],
+                                "rendering": 'background',
+                                "color": '#847059'
+                            }
+
+                        )
+
+                        $(".infoDisponibilidad").html('<h1 class="pb-5 float-left">¡Está Disponible!</h1>');
+                        // $(".colDerReservas").show();
+                        colDerReservas();
+                    }
+
+                }
+                // FIN CICLO FOR
+                if (validarDisponibilidad) {
+
+                    totalEventos.push({
+                        "start": fechaIngreso,
+                        "end": fechaSalida,
+                        "rendering": 'background',
+                        "color": '#FFCC29'
+                    })
+
+                }
+
+                $('#calendar').fullCalendar({
+                    defaultDate: fechaIngreso,
+                    header: {
+                        left: 'prev',
+                        center: 'title',
+                        right: 'next'
+                    },
+                    events: totalEventos
+
+                });
 
             }
-             /* VALIDAR CRUCE DE FECHAS OPCIÓN 2 */         
 
-             if(fechaIngreso > respuesta[i]["fecha_ingreso"] && fechaIngreso < respuesta[i]["fecha_salida"]){
+        }
 
-              opcion2[i] = false;            
-
-            }else{
-
-              opcion2[i] = true;
-
-            }
-
-             /* VALIDAR CRUCE DE FECHAS OPCIÓN 3 */         
-
-            if(fechaIngreso < respuesta[i]["fecha_ingreso"] && fechaSalida > respuesta[i]["fecha_ingreso"]){
-
-              opcion3[i] = false;            
-
-            }else{
-
-              opcion3[i] = true;
-
-            }
-
-             /* VALIDAR DISPONIBILIDAD */    
-
-             if(opcion1[i] == false || opcion2[i] == false || opcion3[i] == false){
-
-              validarDisponibilidad = false;
-            
-            }else{
-
-              validarDisponibilidad = true;
-             
-            }
-
-
-         // console.log("validarDisponibilidad", validarDisponibilidad);
-
-         if(!validarDisponibilidad){
-
-          totalEventos.push(
-            {
-              "start": respuesta[i]["fecha_ingreso"],
-              "end": respuesta[i]["fecha_salida"],
-              "rendering": 'background',
-              "color": '#847059'
-            }
-          )
-
-           $(".infoDisponibilidad").html('<h5 class="pb-5 float-left">¡Lo sentimos, no hay disponibilidad para esa fecha!<br><br><strong>¡Vuelve a intentarlo!</strong></h5>');
-            
-           break;
-
-        }else{
-
-        totalEventos.push(
-          {
-            "start": respuesta[i]["fecha_ingreso"],
-            "end": respuesta[i]["fecha_salida"],
-            "rendering": 'background',
-            "color": '#847059'
-          }
-
-        )
-
-        $(".infoDisponibilidad").html('<h1 class="pb-5 float-left">¡Está Disponible!</h1>'); 
-        // $(".colDerReservas").show();
-         colDerReservas();
-      }        
-
-    }
-    // FIN CICLO FOR
-      if(validarDisponibilidad){
-
-        totalEventos.push(
-          {
-              "start": fechaIngreso,
-              "end": fechaSalida,
-              "rendering": 'background',
-              "color": '#FFCC29'
-            }
-        )
-
-      }
-
-      $('#calendar').fullCalendar({
-        defaultDate:fechaIngreso,
-        header: {
-            left: 'prev',
-            center: 'title',
-            right: 'next'
-        },
-        events:totalEventos
-
-      });
-
-    }
-
-  }
-
-  })
+    })
 
 }
 
@@ -235,20 +230,20 @@ if($(".infoReservas").html() != undefined){
 CÓDIGO ALEATORIO
 =============================================*/
 
-var chars ="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-function codigoAleatorio(chars, length){
+function codigoAleatorio(chars, length) {
 
-  codigo = "";
+    codigo = "";
 
-  for(var i = 0; i < length; i++){
+    for (var i = 0; i < length; i++) {
 
-    rand = Math.floor(Math.random()*chars.length);
-    codigo += chars.substr(rand, 1);
-  
-  }
+        rand = Math.floor(Math.random() * chars.length);
+        codigo += chars.substr(rand, 1);
 
-  return codigo;
+    }
+
+    return codigo;
 
 }
 
@@ -257,38 +252,99 @@ function codigoAleatorio(chars, length){
 FUNCIÓN COL.DERECHA RESERVAS
 =============================================*/
 
-function colDerReservas(){
+function colDerReservas() {
 
-  $(".colDerReservas").show(); 
+    $(".colDerReservas").show();
 
-  var codigoReserva = codigoAleatorio(chars, 9);
-  
-  var datos = new FormData();
-  datos.append("codigoReserva", codigoReserva);
+    var codigoReserva = codigoAleatorio(chars, 9);
 
-  $.ajax({
+    var datos = new FormData();
+    datos.append("codigoReserva", codigoReserva);
 
-   url:urlPrincipal+"ajax/reservas.ajax.php",
-   method: "POST",
-   data: datos,
-   cache: false,
-   contentType: false,
-   processData: false,
-   dataType:"json",
-   success:function(respuesta){
-    
-      if(!respuesta){
-        // no hay concidencia
-        $(".codigoReserva").html(codigoReserva);
+    $.ajax({
 
-      }else{
+        url: urlPrincipal + "ajax/reservas.ajax.php",
+        method: "POST",
+        data: datos,
+        cache: false,
+        contentType: false,
+        processData: false,
+        dataType: "json",
+        success: function(respuesta) {
 
-         $(".codigoReserva").html(codigoReserva+codigoAleatorio(chars, 3));
+            if (!respuesta) {
+                // no hay concidencia
+                $(".codigoReserva").html(codigoReserva);
 
-      }
+            } else {
 
-   }
+                $(".codigoReserva").html(codigoReserva + codigoAleatorio(chars, 3));
 
- })
+            }
+
+            /*=============================================
+              CAMBIO DE PLAN
+              =============================================*/
+
+            $(".elegirPlan").change(function() {
+
+                cambioPlanesPersonas();
+
+
+            })
+
+            /*=============================================
+              CAMBIO DE PERSONAS
+              =============================================*/
+
+            $(".cantidadPersonas").change(function() {
+
+                cambioPlanesPersonas();
+
+
+            })
+
+        }
+
+    })
+
+}
+
+/*=============================================
+  CAMBIO DE PERSONAS
+=============================================*/
+function cambioPlanesPersonas() {
+
+    switch ($(".cantidadPersonas").val()) {
+
+        case "2":
+
+            $(".precioReserva span").html($(".elegirPlan").val().split(",")[0] * dias);
+            $(".precioReserva span").number(true);
+
+            break;
+
+        case "3":
+
+            $(".precioReserva span").html(Number($(".elegirPlan").val().split(",")[0] * 0.25) + Number($(".elegirPlan").val().split(",")[0]) * dias);
+            $(".precioReserva span").number(true);
+
+            break;
+
+        case "4":
+
+            $(".precioReserva span").html(Number($(".elegirPlan").val().split(",")[0] * 0.50) + Number($(".elegirPlan").val().split(",")[0]) * dias);
+            $(".precioReserva span").number(true);
+
+            break;
+
+        case "5":
+
+            $(".precioReserva span").html(Number($(".elegirPlan").val().split(",")[0] * 0.75) + Number($(".elegirPlan").val().split(",")[0]) * dias);
+            $(".precioReserva span").number(true);
+
+            break;
+
+    }
 
 }
