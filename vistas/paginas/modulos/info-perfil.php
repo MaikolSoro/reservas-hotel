@@ -115,8 +115,8 @@ INFO PERFIL
 
 									<ul class="list-group">
 										
-										<li class="list-group-item small">Juan Guillermo Osorio</li>
-										<li class="list-group-item small">juangui@correo.com</li>
+										<li class="list-group-item small">maikolsoro.z1998@gmail.com</li>
+										<li class="list-group-item small">maikolsoro.z1998@gmail.com</li>
 										<li class="list-group-item small">
 											<button class="btn btn-dark btn-sm">Cambiar Contraseña</button>
 										</li>

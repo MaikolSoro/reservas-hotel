@@ -186,7 +186,7 @@ INFO HABITACIÓN
 
 								<div class="col-12 col-md-6 mt-2 mt-lg-0 input-group">
 									
-										<input type="submit" class="btn btn-block btn-md text-white" value="Ver disponibilidad" style="background:black">	
+										<input type="submit" class="btn btn-block btn-md text-white" value="Ver disponibilidad" style="background:green">	
 
 								</div>
 
