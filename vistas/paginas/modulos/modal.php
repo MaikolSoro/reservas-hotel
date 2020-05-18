@@ -39,7 +39,7 @@ VENTANA MODAL PLANES
 VENTANA MODAL INGRESO
 ======================================-->
 
-<div class="modal" id="modalIngreso">
+<div class="modal formulario" id="modalIngreso">
 
   <div class="modal-dialog">
 
@@ -150,7 +150,7 @@ VENTANA MODAL INGRESO
 VENTANA MODAL REGISTRO
 ======================================-->
 
-<div class="modal" id="modalRegistro">
+<div class="modal formulario"  id="modalRegistro">
 
   <div class="modal-dialog">
 
