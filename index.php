@@ -94,5 +94,16 @@ require_once "models/reservas.models.php";
                                               
 /*=====  End of Section Se importa el controlador y el model de las reservas ======*/
 
+
+/*=============================================
+=            Section Se importa el controlador y el model los usuarios          =
+=============================================*/
+                                              
+require_once "controllers/usuarios.controlador.php";
+require_once "models/usuarios.models.php";
+                                              
+                                              
+/*=====  End of Section Se importa el controlador y el model de los usuarios======*/
+
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();

@@ -94,6 +94,8 @@ $servidor = ControladorRuta::ctrServidor();
 <?php
 
 include "paginas/modulos/header.php";
+include "paginas/modulos/modal.php";							  
+
 
 /*=============================================
 =            Páginas           =
@@ -140,7 +142,6 @@ if(isset($_GET["pagina"])){
 
 
 include "paginas/modulos/footer.php";
-include "paginas/modulos/modal.php";							  
 											  
 /*=====  End of Section Páginas  ======*/
 	
@@ -153,6 +154,7 @@ include "paginas/modulos/modal.php";
 <script src="js/idiomas.js"></script>
 <script src="js/habitaciones.js"></script>
 <script src="js/reservas.js"></script>
+<script src="js/usuarios.js"></script>
 <!-- <script src="js/reservas2.js"></script> -->
 <!-- <script src="js/agendas.js"></script> -->
 <!-- <script src="js/agendas2.js"></script> -->
