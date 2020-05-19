@@ -89,6 +89,10 @@ $servidor = ControladorRuta::ctrServidor();
 	<!-- https://plugins.jquery.com/df-number-format/ -->
 	<script src="js/plugins/jquerynumber.js"></script>
 
+	<!-- SWEET ALERT 2 -->	
+	<!-- https://sweetalert2.github.io/ -->
+	<script src="js/plugins/sweetalert2.all.js"></script>
+
 </head>
 <body>
 <?php

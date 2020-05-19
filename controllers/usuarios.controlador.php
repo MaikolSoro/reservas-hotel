@@ -60,7 +60,7 @@ Class ControladorUsuarios{
 
 							<center>
 								
-							<img style="padding:20px; width:10%" src="https://maikolsoro.com/tienda/logo.png">
+								<img style="padding:20px; width:10%" src="https://tutorialesatualcance.com/tienda/logo.png">
 
 							</center>
 
@@ -68,7 +68,7 @@ Class ControladorUsuarios{
 								
 								<center>
 
-									<img style="padding:20px; width:15%" src="https://maikolsoro.com/tienda/icon-email.png">
+									<img style="padding:20px; width:15%" src="https://tutorialesatualcance.com/tienda/icon-email.png">
 
 									<h3 style="font-weight:100; color:#999">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
 
@@ -303,5 +303,44 @@ Class ControladorUsuarios{
 
 		}
 
+	}
+
+	/*=============================================
+	REGISTRO CON REDES SOCIALES
+	=============================================*/
+
+	static public function ctrRegistroRedesSociales($datos){
+
+		$tabla = "usuarios";
+		$item = "email";
+		$valor = $datos["email"];
+		$emailRepetido = false;
+
+		$verificarExistenciaUsuario = ModelUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+
+		if($verificarExistenciaUsuario){
+
+			$emailRepetido = true;
+
+		}else{
+
+			$registrarUsuario = ModelUsuarios::mdlRegistroUsuario($tabla, $datos);
+
+		}
+
+		if($emailRepetido || $registrarUsuario == "ok"){
+
+			$traerUsuario = ModelUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+
+			if($traerUsuario["modo"] == "facebook"){
+
+				echo "ok";
+
+			}else {
+
+				echo "";
+			}
+
+		}
 	}
 }

@@ -105,5 +105,7 @@ require_once "models/usuarios.models.php";
                                               
 /*=====  End of Section Se importa el controlador y el model de los usuarios======*/
 
+require_once "extensiones/vendor/autoload.php";
+
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
