@@ -60,7 +60,7 @@ Class ControladorUsuarios{
 
 							<center>
 								
-								<img style="padding:20px; width:10%" src="https://tutorialesatualcance.com/tienda/logo.png">
+								<img style="padding:20px; width:10%" src="https://maikolsoro.com/tienda/logo.png">
 
 							</center>
 
@@ -68,7 +68,7 @@ Class ControladorUsuarios{
 								
 								<center>
 
-									<img style="padding:20px; width:15%" src="https://tutorialesatualcance.com/tienda/icon-email.png">
+									<img style="padding:20px; width:15%" src="https://maikolsoro/tienda/icon-email.png">
 
 									<h3 style="font-weight:100; color:#999">VERIFIQUE SU DIRECCIÓN DE CORREO ELECTRÓNICO</h3>
 
