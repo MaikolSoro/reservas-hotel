@@ -1,3 +1,71 @@
+<?php
+
+/*=============================================
+ =     Crear el objeto de la API  GOOGLE
+=============================================*/
+$cliente = new Google_Cliente();
+$cliente-> setAuthConfig('modelos/client_secret.json');
+$cliente-> setAccessType("offline");
+$cliente-> setScopes(['profile', 'email']);
+
+
+ /*=====  End of Crear el objeto de la API  GOOGLE  ======*/
+
+ /*=============================================
+ RUTA PARA EL LOGIN DE GOOGLE
+ =============================================*/
+ 
+ $rutaGoogle = $cliente->createAuthUrl();
+ 
+ /*=============================================
+ RECIBIMOS LA VARIABLE GET DE GOOGLE LLAMADA CODE
+ =============================================*/
+ if(isset($_GET["code"])){
+ 
+	 $token = $cliente->authenticate($_GET["code"]);
+ 
+	 $_SESSION['id_token_google'] = $token;
+ 
+	 $cliente->setAccessToken($token);
+ 
+ }
+
+ /*=============================================
+RECIBIMOS LOS DATOS CIFRADOS DE GOOGLE EN UN ARRAY
+=============================================*/
+
+if($cliente->getAccessToken()){
+
+	$item = $cliente->verifyIdToken();
+
+	$datos = array("nombre"=>$item["name"],
+				   "email"=>$item["email"],
+				   "foto"=>$item["picture"],
+				   "password"=>"null",
+				   "modo"=>"google",
+				   "verificacion"=>1,
+				   "email_encriptado"=>"null");
+
+	$repuesta = ControladorUsuarios::ctrRegistroRedesSociales($datos);
+
+	if($repuesta == "ok"){
+
+		echo '<script>
+
+			setTimeout(function(){
+				
+				window.location = "'.$ruta.'perfil";
+
+			},1000);
+
+			</script>';
+	}
+}
+
+?>
+
+
+
 <!--=====================================
 VENTANA MODAL PLANES
 ======================================-->
@@ -68,11 +136,12 @@ VENTANA MODAL INGRESO
 			</div>
 
 			<div class="px-2 flex-fill">
-
-				<p class="p-2 bg-danger text-center text-white"  style="cursor:pointer">
-					<i class="fab fa-google"></i>
-					Ingreso con Google
-				</p>
+ 				<a href="<?php  echo $rutaGoogle; ?>">
+					<p class="p-2 bg-danger text-center text-white"  style="cursor:pointer">
+						<i class="fab fa-google"></i>
+						Ingreso con Google
+					</p>
+				</a>
 
 			</div>
 
@@ -183,12 +252,12 @@ VENTANA MODAL REGISTRO
 			</div>
 
 			<div class="px-2 flex-fill">
-
-				<p class="p-2 bg-danger text-center text-white"  style="cursor:pointer">
-					<i class="fab fa-google"></i>
-					Ingreso con Google
-				</p>
-
+				<a href="<?php  echo $rutaGoogle; ?>">
+					<p class="p-2 bg-danger text-center text-white"  style="cursor:pointer">
+						<i class="fab fa-google"></i>
+						Ingreso con Google
+					</p>
+ 				</a>
 			</div>
 
       	</div>

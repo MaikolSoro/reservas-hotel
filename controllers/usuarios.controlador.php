@@ -336,8 +336,10 @@ Class ControladorUsuarios{
 
 				echo "ok";
 
-			}else {
+			}else if($traerUsuario["modo"] == "google"){
 
+				echo "ok";
+			} else {
 				echo "";
 			}
 
