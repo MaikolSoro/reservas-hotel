@@ -40,13 +40,25 @@ INFO PERFIL
 			BLOQUE IZQ
 			======================================-->
 			
-			<div class="col-12 col-lg-3 colIzqPerfil p-0 px-lg-3">
+			<div class="col-12 col-lg-4 colIzqPerfil p-0 px-lg-3">
 				
 				<div class="cabeceraPerfil pt-4">
-					
-					<a href="<?php echo $ruta; ?>reservas" class="float-left lead text-white pt-1 px-3 mb-4">
-						<h5><i class="fas fa-chevron-left"></i> Regresar</h5>
+
+				<?php if ($usuario["modo"] == "facebook"): ?>
+
+					<a href="#" class="float-left lead text-white pt-1 px-3 mb-4 salir">
+						<h5><i class="fas fa-chevron-left"></i> Salir</h5>
 					</a>
+
+				<?php else: ?>
+					
+					<a href="<?php echo $ruta;  ?>salir" class="float-left lead text-white pt-1 px-3 mb-4">
+						<h5><i class="fas fa-chevron-left"></i> Salir</h5>
+					</a>
+
+				<?php endif ?>
+					
+					
 
 					<div class="clearfix"></div>
 

@@ -334,6 +334,8 @@ Class ControladorUsuarios{
 
 			if($traerUsuario["modo"] == "facebook"){
 
+				session_start();
+				
 				$_SESSION["validarSesion"] = "ok";
 				$_SESSION["id"] = $traerUsuario["id_u"];
 				$_SESSION["nombre"] = $traerUsuario["nombre"];

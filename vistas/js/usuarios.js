@@ -227,3 +227,49 @@ function testApi() {
         }
     })
 }
+
+/*=============================================
+SALIR DE FACEBOOK
+=============================================*/
+
+$(".salir").click(function(e) {
+
+
+
+    e.preventDefault();
+
+    FB.getLoginStatus(function(response) {
+
+        if (response.status === 'connected') {
+
+            FB.logout(function(response) {
+
+                // TODO: AGREGAR LA COOKIE DE FACEBOOK
+                deleteCookie("");
+
+                setTimeout(function() {
+
+                    window.location = urlPrincipal + "salir";
+
+                }, 500)
+
+            });
+
+            function deleteCookie(name) {
+
+                document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+
+        } else {
+
+            setTimeout(function() {
+
+                window.location = urlPrincipal + "salir";
+
+            }, 500)
+
+        }
+
+    })
+
+})
