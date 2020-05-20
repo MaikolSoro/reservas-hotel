@@ -1,3 +1,31 @@
+<?php
+
+$item = "id_u";
+$valor = $_SESSION["id"];
+
+$usuario = ControladorUsuarios::ctrMostrarUsuario($item, $valor);
+$reservas = ControladorReservas::ctrMostrarReservasUsuario($valor);
+
+$hoy = date("Y-m-d");
+$noVencidas = 0;
+$vencidas = 0;
+
+foreach ($reservas as $key => $value) {
+	
+	if($hoy >= $value["fecha_ingreso"]){
+
+		++$vencidas;		
+	
+	}else{
+
+		++$noVencidas;
+
+	}
+
+}
+
+?>
+
 <!--=====================================
 INFO PERFIL
 ======================================-->
@@ -31,10 +59,26 @@ INFO PERFIL
 
 				<div class="descripcionPerfil">
 					
-					<figure class="text-center">
-							
-						<img src="img/testimonio01.png" class="img-fluid w-50">
+					<figure class="text-center imgPerfil">
 
+					<?php if ($usuario["foto"] == ""): ?>
+
+						<img src="<?php echo $servidor; ?>vistas/img/usuarios/default/default.png" class="img-fluid rounded-circle">
+
+					<?php else: ?>
+
+						<?php if ($usuario["modo"] == "directo"): ?>
+
+							<img src="<?php echo $servidor.$usuario["foto"]; ?>" class="img-fluid rounded-circle">
+						
+						<?php else: ?>	
+
+							<img src="<?php echo $usuario["foto"]; ?>" class="img-fluid rounded-circle">
+							
+						<?php endif ?>
+						
+					<?php endif ?>
+										
 					</figure>
 
 					<div id="accordion">
@@ -51,10 +95,11 @@ INFO PERFIL
 
 								<ul class="card-body p-0">
 
-									<li class="px-2" style="background:#FFFDF4"> 1 Por vencerse</li>
-									<li class="px-2 text-white" style="background:#CEC5B6"> 5 vencidas</li>
+									<li class="px-2 misReservas" style="background:#FFFDF4"> <?php echo $noVencidas; ?> Por vencerse</li>
+									<li class="px-2 text-white misReservas" style="background:#CEC5B6"> <?php echo $vencidas; ?> vencidas</li>
 
 								</ul>
+
 
 								<!--=====================================
 								TABLA RESERVAS MÓVIL
@@ -115,8 +160,9 @@ INFO PERFIL
 
 									<ul class="list-group">
 										
-										<li class="list-group-item small">maikolsoro.z1998@gmail.com</li>
-										<li class="list-group-item small">maikolsoro.z1998@gmail.com</li>
+										<li class="list-group-item small"><?php echo $usuario["nombre"]; ?></li>
+										<li class="list-group-item small"><?php echo $usuario["email"]; ?></li>
+
 										<li class="list-group-item small">
 											<button class="btn btn-dark btn-sm">Cambiar Contraseña</button>
 										</li>
@@ -148,7 +194,7 @@ INFO PERFIL
 
 					<div class="col-6 d-none d-lg-block">
 						
-						<h4 class="float-left">Hola Juan</h4>
+						<h4 class="float-left">Hola <?php echo $usuario["nombre"]; ?></h4>
 
 						<h4 class="float-right"> | <span class="colorTitulos">Salir</span></h4>
 

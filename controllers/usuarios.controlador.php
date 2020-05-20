@@ -334,10 +334,22 @@ Class ControladorUsuarios{
 
 			if($traerUsuario["modo"] == "facebook"){
 
+				$_SESSION["validarSesion"] = "ok";
+				$_SESSION["id"] = $traerUsuario["id_u"];
+				$_SESSION["nombre"] = $traerUsuario["nombre"];
+				$_SESSION["foto"] = $traerUsuario["foto"];
+				$_SESSION["email"] = $traerUsuario["email"];
+				$_SESSION["modo"] = $traerUsuario["modo"];
 				echo "ok";
 
 			}else if($traerUsuario["modo"] == "google"){
 
+				$_SESSION["validarSesion"] = "ok";
+				$_SESSION["id"] = $traerUsuario["id_u"];
+				$_SESSION["nombre"] = $traerUsuario["nombre"];
+				$_SESSION["foto"] = $traerUsuario["foto"];
+				$_SESSION["email"] = $traerUsuario["email"];
+				$_SESSION["modo"] = $traerUsuario["modo"];
 				echo "ok";
 			} else {
 				echo "";
