@@ -114,8 +114,21 @@ INFO RESERVAS
 
 					<h6 class="float-right px-3">
 
+					<?php if (isset($_SESSION["validarSesion"])): ?>
+
+						<?php if ($_SESSION["validarSesion"] == "ok"): ?>
+
+							<br>
+							<a href="<?php echo $ruta;  ?>perfil" style="color:#FFCC29">Ver tus reservas</a>
+
+						<?php endif ?>
+
+					<?php else: ?>
+						
 						<br>
-						<a href="<?php echo $ruta;  ?>perfil" style="color:#FFCC29">Ver tus reservas</a>
+						<a href="#modalIngreso" data-toggle="modal" style="color:#FFCC29">Ver tus reservas</a>
+						
+					<?php endif ?>						
 
 					</h6>
 
@@ -292,9 +305,45 @@ INFO RESERVAS
 					
 					<div class="col-12 col-lg-6 col-xl-5">
 				
-						<a href="<?php echo $ruta;?>perfil">
-							<button class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
-						</a>
+						<?php if (isset($_SESSION["validarSesion"])): ?>
+
+						<?php if ($_SESSION["validarSesion"] == "ok"): ?>
+
+							<a href="<?php echo $ruta;?>perfil" 
+								class="pagarReserva" 
+								idHabitacion="<?php echo $reservas[$indice]["id_h"]; ?>"
+								imgHabitacion="<?php echo $servidor.$galeria[0]; ?>"
+								infoHabitacion="Habitación <?php echo $reservas[$indice]["tipo"]." ".$reservas[$indice]["estilo"]; ?>"
+								pagoReserva="<?php echo ($precioContinental*$dias);?>"
+								codigoReserva=""
+								fechaIngreso="<?php echo $_POST["fecha-ingreso"];?>"
+								fechaSalida="<?php echo $_POST["fecha-salida"];?>"
+								plan="Plan Continental" 
+								personas="2">
+									<button type="button" class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
+							</a>	
+
+
+						<?php endif ?>
+									
+					<?php else: ?>
+
+							<a href="#modalIngreso" data-toggle="modal"  
+								class="pagarReserva" 
+								idHabitacion="<?php echo $reservas[$indice]["id_h"]; ?>"
+								imgHabitacion="<?php echo $servidor.$galeria[0]; ?>"
+								infoHabitacion="Habitación <?php echo $reservas[$indice]["tipo"]." ".$reservas[$indice]["estilo"]; ?>"
+								pagoReserva="<?php echo ($precioContinental*$dias);?>"
+								codigoReserva=""
+								fechaIngreso="<?php echo $_POST["fecha-ingreso"];?>"
+								fechaSalida="<?php echo $_POST["fecha-salida"];?>"
+								plan="Plan Continental" 
+								personas="2">
+									<button type="button" class="btn btn-dark btn-lg w-100">PAGAR <br> RESERVA</button>
+							</a>						
+
+					<?php endif ?>
+
 
 					</div>
 			
