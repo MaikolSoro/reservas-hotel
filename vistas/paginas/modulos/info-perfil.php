@@ -174,14 +174,20 @@ INFO PERFIL
 										
 										<li class="list-group-item small"><?php echo $usuario["nombre"]; ?></li>
 										<li class="list-group-item small"><?php echo $usuario["email"]; ?></li>
-
+										
+										<?php if ($usuario["modo"] == "directo"): ?>											
+										
 										<li class="list-group-item small">
-											<button class="btn btn-dark btn-sm">Cambiar Contraseña</button>
-										</li>
-										<li class="list-group-item small">
-											<button class="btn btn-primary btn-lg">Cambiar Imagen</button>
-										</li>
 
+											<button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#cambiarPassword">Cambiar Contraseña</button>
+
+										</li>
+										<!--=====================================
+										MODAL PARA CAMBIAR CONTRASEÑA
+										======================================-->
+
+
+										
 									</ul>
 
 								</div>
