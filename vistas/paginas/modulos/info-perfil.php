@@ -182,12 +182,13 @@ INFO PERFIL
 											<button class="btn btn-dark btn-sm" data-toggle="modal" data-target="#cambiarPassword">Cambiar Contraseña</button>
 
 										</li>
+										<?php endif ?>
 										<!--=====================================
 										MODAL PARA CAMBIAR CONTRASEÑA
 										======================================-->
 
 
-										
+
 									</ul>
 
 								</div>
