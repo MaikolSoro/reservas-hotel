@@ -227,43 +227,10 @@ INFO PERFIL
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr>
-					        <td>1</td>
-					        <td>Suite Contemporánea</td>
-					        <td>30.08.2018</td>
-					        <td>03.09.2018</td>
-					        <td>
-					        
-								  <button type="button" class="btn btn-dark text-white"><i class="fas fa-pencil-alt"></i></button>
-								  <button type="button" class="btn btn-warning text-white"><i class="fas fa-eye"></i></button>
-								
-					        </td>
-					      </tr>
-					       <tr>
-					        <td>2</td>
-					        <td>Especial Caribeña</td>
-					        <td>30.08.2018</td>
-					        <td>03.09.2018</td>
-					        <td>
-					        	
-								  <button type="button" class="btn btn-dark text-white"><i class="fas fa-pencil-alt"></i></button>
-								  <button type="button" class="btn btn-warning text-white"><i class="fas fa-eye"></i></button>
-								
-					        </td>
-					      </tr>
-
-					       <tr>
-					        <td>3</td>
-					        <td>Suite Clásica</td>
-					        <td>30.08.2018</td>
-					        <td>03.09.2018</td>
-					        <td>
-					        	
-								  <button type="button" class="btn btn-dark text-white"><i class="fas fa-pencil-alt"></i></button>
-								  <button type="button" class="btn btn-warning text-white"><i class="fas fa-eye"></i></button>
-								
-					        </td>
-					      </tr>
+					    
+						<!--=============================================
+									 Hacerlo dinamico las reservas            
+						 =============================================-->
 					    </tbody>
 					  </table>
 
